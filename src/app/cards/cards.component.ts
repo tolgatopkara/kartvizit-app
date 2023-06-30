@@ -5,6 +5,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { AddCardDialogComponent } from './add-card-dialog/add-card-dialog.component';
 import { CardService } from '../services/card.service';
+import { CardSearchComponent } from './card-search/card-search.component';
 
 @Component({
   selector: 'app-cards',
@@ -18,7 +19,9 @@ import { CardService } from '../services/card.service';
       </p>
       <hr />
     </div>
-    <button mat-raised-button color="primary" (click)="openDialog()">Kartvizit Ekle</button>
+    <app-card-search/>
+
+    <button style="margin-left: 16px;" mat-raised-button color="primary" (click)="openDialog()">Kartvizit Ekle</button>
   </div>
 
   <div class="cards">
@@ -29,14 +32,20 @@ import { CardService } from '../services/card.service';
       <div class="col-12" *ngIf="cardService.cards?.length === 0">
       <span>Henuz kartvizit eklemediniz <a class="text-primary" href="javascript:alert('Lutfen Bilgileri Dogru Doldurgunuzdan Emin Olun!');" (click)="openDialog()">Buraya Tiklayarak</a> lutfen kartvizit ekleyin</span>
       </div>
-      <div class="col-12 col-md-4 col-lg-3" *ngFor="let card of cardService.cards">
+      <div class="col-12 col-md-4 col-lg-3" *ngFor="let card of cardService.filteredCards">
         <app-card-item [card]="card" />
       </div>
     </div>
   </div>
 </main>
 `,
-  imports: [CommonModule, CardItemComponent, MatDialogModule, MatButtonModule, AddCardDialogComponent, ],
+  imports: [CommonModule,
+            CardItemComponent,
+            MatDialogModule,
+            MatButtonModule,
+            AddCardDialogComponent,
+            CardSearchComponent,
+          ],
 
 })
 export class CardsComponent implements OnInit {
