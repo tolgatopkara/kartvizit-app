@@ -1,0 +1,44 @@
+<h2   mat-dialog-title>{{cardData ? 'Kartviziti Duzenle' : 'Yeni Kartvizit'}}</h2>
+<mat-dialog-content class="mat-typography">
+  <div *ngIf="showProgressBar">
+    <mat-progress-bar  mode="indeterminate"/>
+  </div>
+  <br>
+  <h3> Kartivizit eklemek icin bilgileri doldurun </h3>
+  <form [formGroup]="cardForm" action="">
+    <mat-form-field class="example-full-width">
+      <mat-label>Baslik</mat-label>
+      <input formControlName="title" matInput placeholder="Ex. Car Mechanic New-York" value="">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label>Isim</mat-label>
+      <input formControlName="name" matInput placeholder="Ex. Tolga" value="">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label>Telefon</mat-label>
+      <input formControlName="phone" matInput placeholder="Ex. 959 9912 00 00" value="">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label>E-Mail</mat-label>
+      <input formControlName="email" matInput placeholder="Ex. exmple@example.com" value="">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label>Adres</mat-label>
+      <textarea formControlName="address" matInput  placeholder="Ex. New-York Wall Street No 16/23 USA " name="" id=""  value="" cols="30" rows="10"></textarea>
+    </mat-form-field>
+
+
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <div *ngIf="cardData" class="flex-grow-1 text-start">
+    <button (click)="deleteCard()" color="warn" mat-stroked-button [disabled]="showProgressBar">Sil</button>
+  </div>
+
+  <div>
+    <button color="warn" mat-flat-button mat-dialog-close>Kapat</button>
+    <button color="primary" (click)="cardData ? updateCard() : addCard()" mat-button  cdkFocusInitial [disabled]="cardForm.invalid || showProgressBar "  > {{cardData ? 'Guncelle' : 'Ekle'}}</button>
+  </div>
+</mat-dialog-actions>
+
+
