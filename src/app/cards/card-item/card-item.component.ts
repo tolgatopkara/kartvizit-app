@@ -7,7 +7,7 @@ import { MatListModule } from '@angular/material/list';
 import { Card } from 'src/app/models/card';
 import { MatDialog } from '@angular/material/dialog';
 import { AddCardDialogComponent } from '../add-card-dialog/add-card-dialog.component';
-import { AreusureComponentComponent } from 'src/app/areusure-component/areusure-component.component';
+import { ConfirmService } from 'src/app/services/confirm.service';
 
 
 @Component({
@@ -20,11 +20,13 @@ import { AreusureComponentComponent } from 'src/app/areusure-component/areusure-
       color: white;
       cursor: pointer;
     }
-    `  ]
+    `  ],
+  providers: [ConfirmService]
 
 })
 export class CardItemComponent {
   dialog = inject(MatDialog);
+  confirmService = inject(ConfirmService);
 
   @Input() card!: Card;
 
@@ -39,14 +41,22 @@ export class CardItemComponent {
 
   }
 
+  onDelete(cardId: number) {
+    this.confirmService.openConfirmDialog()
+      .afterClosed().subscribe(res => {
+        if (res) {
+          console.log(cardId);
+          console.log(res);
+          this.confirmService.CardService.deleteCard(cardId).subscribe(() => {
+            this.confirmService.CardService.getCards();
+          });
+        }
+      });
+    console.log(cardId);
 
-  openDeleteDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
-    this.dialog.open(AreusureComponentComponent, {
-      width: '250px',
-      enterAnimationDuration,
-      exitAnimationDuration,
-    });
 
   }
+
+
 
 }

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import {  MatDialogModule} from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 
 @Component({
@@ -10,11 +10,11 @@ import { MatButtonModule } from '@angular/material/button';
   template: `
     <h1 mat-dialog-title>Delete file</h1>
 <div mat-dialog-content>
-  Would you like to delete cat.jpeg?
+  Would you like to delete ?
 </div>
 <div mat-dialog-actions>
-  <button mat-button mat-dialog-close>No</button>
-  <button mat-button mat-dialog-close cdkFocusInitial>Ok</button>
+  <button [mat-dialog-close]="false" mat-button mat-dialog-close>No</button>
+  <button [mat-dialog-close]="true" color="warn" mat-button mat-dialog-close cdkFocusInitial>Yes</button>
 </div>
 
   `,
@@ -24,10 +24,18 @@ import { MatButtonModule } from '@angular/material/button';
    `
 
 
-  ]
+  ],
+
 })
 export class AreusureComponentComponent {
-  constructor(public dialogRef: MatDialogRef<AreusureComponentComponent>) { }
 
+  // dialogRef = inject(MatDialogRef<AreusureComponentComponent>);
 
+  // onClickNo() {
+  //   this.dialogRef.close(false);
+  // }
+
+  // onClickYes() {
+  //   this.dialogRef.close(true);
+  // }
 }

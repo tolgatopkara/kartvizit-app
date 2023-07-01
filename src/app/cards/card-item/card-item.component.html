@@ -16,10 +16,7 @@
   </mat-card-content>
 
   <mat-card-actions>
-    <button mat-raised-button (click)="openDeleteDialog('0ms', '0ms')">
-      Open dialog without animation
-    </button>
-    <!-- <button color="primary" (click)="openUpdateCardDialog(card)" mat-flat-button>Düzenle</button> -->
+    <button (click)="onDelete(card.id)">Sil</button>
   </mat-card-actions>
 
   <mat-card-footer> </mat-card-footer>
