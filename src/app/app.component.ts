@@ -9,10 +9,18 @@ import { HttpClientModule } from '@angular/common/http';
   standalone: true,
   imports: [CommonModule, RouterOutlet , HeaderComponent,HttpClientModule,],
   template: `
-    <app-header></app-header>
-  <router-outlet></router-outlet> `,
+  <div class="mat-app-background">
+  <app-header></app-header>
+  <router-outlet></router-outlet>
+  </div>
+
+   `,
   styles: [
-    ``
+    `
+    .mat-app-background {
+      min-height: 100vh;
+    }
+    `
   ],
 
 })

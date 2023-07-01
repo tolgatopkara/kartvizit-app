@@ -8,6 +8,7 @@ import { Card } from 'src/app/models/card';
 import { MatDialog } from '@angular/material/dialog';
 import { AddCardDialogComponent } from '../add-card-dialog/add-card-dialog.component';
 import { ConfirmService } from 'src/app/services/confirm.service';
+import { CardService } from 'src/app/services/card.service';
 
 
 @Component({
@@ -26,6 +27,7 @@ import { ConfirmService } from 'src/app/services/confirm.service';
 })
 export class CardItemComponent {
   dialog = inject(MatDialog);
+  cardService = inject(CardService);
   confirmService = inject(ConfirmService);
 
   @Input() card!: Card;
@@ -45,16 +47,13 @@ export class CardItemComponent {
     this.confirmService.openConfirmDialog()
       .afterClosed().subscribe(res => {
         if (res) {
-          console.log(cardId);
-          console.log(res);
-          this.confirmService.CardService.deleteCard(cardId).subscribe(() => {
-            this.confirmService.CardService.getCards();
+          // console.log(cardId);
+          // console.log(res);
+          this.cardService.deleteCard(cardId).subscribe(() => {
+            this.cardService.getCards();
           });
         }
       });
-    console.log(cardId);
-
-
   }
 
 

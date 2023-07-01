@@ -1,21 +1,56 @@
-/* You can add global styles to this file, and also import other style files */
-
-html, body { height: 100%; background-color: #f3f0f3;}
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+@use '@angular/material' as mat;
+@include mat.core();
 
 
-main{
+$light-theme : mat.define-light-theme((color : (primary : mat.define-palette(mat.$cyan-palette, 500),
+      accent : mat.define-palette(mat.$light-green-palette, 500),
+      // warn : mat.define-palette(mat.$cyan-palette, 500),
+    ),
+
+  ));
+
+$dark-theme : mat.define-dark-theme((color : (primary : mat.define-palette(mat.$deep-purple-palette, 600),
+      accent : mat.define-palette(mat.$light-blue-palette, 500),
+      // warn : mat.define-palette(mat.$cyan-palette, 500),
+
+
+    ),
+
+  ));
+
+
+@include mat.all-component-themes($light-theme);
+
+.dark-theme {
+  @include mat.all-component-colors($dark-theme);
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+
+main {
   padding: 30px;
+
   .page-title {
     font-size: 40px;
-    color: #333;
   }
+
   .page-description {
     font-size: 20px;
-    color: #777;
   }
 
 }
+
+
+
 
 $snackBarContainerColorError: #d32f2f;
 $snackBarContainerColorSuccess: #43a047;
@@ -32,4 +67,4 @@ mat-snack-bar-container.error {
     background-color: $snackBarContainerColorError !important;
   }
 }
-// mdc-snackbar__surface
+
