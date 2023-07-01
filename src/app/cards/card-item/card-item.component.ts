@@ -9,12 +9,13 @@ import { MatDialog } from '@angular/material/dialog';
 import { AddCardDialogComponent } from '../add-card-dialog/add-card-dialog.component';
 import { ConfirmService } from 'src/app/services/confirm.service';
 import { CardService } from 'src/app/services/card.service';
+import { MatIconModule } from '@angular/material/icon';
 
 
 @Component({
   selector: 'app-card-item',
   standalone: true,
-  imports: [CommonModule, MatCardModule, MatButtonModule, MatDividerModule, MatListModule],
+  imports: [CommonModule, MatCardModule, MatButtonModule, MatDividerModule, MatListModule,MatIconModule],
   templateUrl: './card-item.component.html',
   styles: [` mat-card-header {
       background-color: #3f51b5;

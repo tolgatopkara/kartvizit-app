@@ -12,9 +12,9 @@ import { MatButtonModule } from '@angular/material/button';
 <div mat-dialog-content>
   Would you like to delete ?
 </div>
-<div mat-dialog-actions>
-  <button [mat-dialog-close]="false" mat-button mat-dialog-close>No</button>
-  <button [mat-dialog-close]="true" color="warn" mat-button mat-dialog-close cdkFocusInitial>Yes</button>
+<div  mat-dialog-actions>
+  <button [mat-dialog-close]="false" mat-button mat-dialog-close cdkFocusInitial>No</button>
+  <button [mat-dialog-close]="true" color="warn" mat-button mat-dialog-close >Yes</button>
 </div>
 
   `,

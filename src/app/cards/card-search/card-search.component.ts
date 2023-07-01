@@ -13,7 +13,7 @@ import { CardService } from 'src/app/services/card.service';
   standalone: true,
   imports: [CommonModule, MatFormFieldModule, MatIconModule, MatButtonModule, FormsModule, MatInputModule] ,
   template : `
-        <mat-form-field style="min-width: 300px;" class="example-form-field">
+        <mat-form-field *ngIf="cardService.cards?.length!==0" style="min-width: 300px;" class="example-form-field">
   <mat-label>Kartvizit Ara</mat-label>
   <input matInput type="text" #searchText (keyup)="search(searchText.value)" >
   <button matSuffix mat-icon-button aria-label="Clear">

@@ -21,7 +21,7 @@ import { CardSearchComponent } from './card-search/card-search.component';
     </div>
     <app-card-search/>
 
-    <button style="margin-left: 16px;" mat-raised-button color="primary" (click)="openDialog()">Kartvizit Ekle</button>
+    <button  [hidden]="cardService.cards.length===0"  style="margin-left: 16px;" mat-raised-button color="primary" (click)="openDialog()">Kartvizit Ekle</button>
   </div>
 
   <div class="cards">
@@ -29,7 +29,7 @@ import { CardSearchComponent } from './card-search/card-search.component';
       <div class="col-12" *ngIf="!cardService.cards">
       <span>Kartvizitler yukleniyor lutfen bekleyiniz...</span>
       </div>
-      <div class="col-12" *ngIf="cardService.cards?.length === 0">
+      <div class="col-12" *ngIf="cardService.cards?.length === 0" >
       <span>Henuz kartvizit eklemediniz <a class="text-primary" href="javascript:alert('Lutfen Bilgileri Dogru Doldurgunuzdan Emin Olun!');" (click)="openDialog()">Buraya Tiklayarak</a> lutfen kartvizit ekleyin</span>
       </div>
       <div class="col-12 col-md-4 col-lg-3" *ngFor="let card of cardService.filteredCards">

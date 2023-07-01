@@ -9,11 +9,14 @@ import { Card } from 'src/app/models/card';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { SnackbarService } from 'src/app/services/snackbar.service';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import {MatIconModule} from '@angular/material/icon';
+import {MatToolbarModule} from '@angular/material/toolbar';
+
 
 @Component({
   selector: 'app-add-card-dialog',
   standalone: true,
-  imports: [CommonModule, MatDialogModule, MatButtonModule, MatInputModule, FormsModule, ReactiveFormsModule,MatSnackBarModule, MatProgressBarModule],
+  imports: [CommonModule, MatDialogModule, MatButtonModule, MatInputModule, FormsModule, ReactiveFormsModule,MatSnackBarModule, MatProgressBarModule ,MatIconModule,MatToolbarModule],
   templateUrl: './add-card-dialog.component.html',
   styles: [`
   .example-form {
@@ -39,8 +42,9 @@ export class AddCardDialogComponent implements OnInit {
   showProgressBar = false;
 
 
+
   ngOnInit(): void {
-    // console.log(this.cardData);
+    this.dialogRef.disableClose = true;  // Prevent user from closing dialog by clicking on background 
     this.cardForm = this.formBuilder.group({
       name: [this.cardData?.name || '', [Validators.maxLength(50)]],
       title: [this.cardData?.title || '', [Validators.required, Validators.maxLength(255)]],

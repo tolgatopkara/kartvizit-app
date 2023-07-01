@@ -16,7 +16,14 @@
   </mat-card-content>
 
   <mat-card-actions>
-    <button (click)="onDelete(card.id)">Sil</button>
+    <button (click)="onDelete(card.id)" mat-mini-fab color="warn" aria-label="Example icon button with a plus one icon">
+      <mat-icon>delete</mat-icon>
+    </button>
+    <button  (click)="openUpdateCardDialog(card)" mat-mini-fab color="primary" aria-label="Example icon button with a plus one icon">
+      <mat-icon>menu</mat-icon>
+    </button>
+
+
   </mat-card-actions>
 
   <mat-card-footer> </mat-card-footer>

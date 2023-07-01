@@ -1,4 +1,9 @@
-<h2   mat-dialog-title>{{cardData ? 'Kartviziti Duzenle' : 'Yeni Kartvizit'}}</h2>
+
+<mat-toolbar color="primary">
+  <h2>{{cardData ? 'Kartviziti Duzenle' : 'Yeni Kartvizit'}}</h2>
+  <span class="example-spacer"></span>
+</mat-toolbar>
+
 <mat-dialog-content class="mat-typography">
   <div *ngIf="showProgressBar">
     <mat-progress-bar  mode="indeterminate"/>
@@ -31,14 +36,15 @@
   </form>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-  <div *ngIf="cardData" class="flex-grow-1 text-start">
-    <button (click)="deleteCard()" color="warn" mat-stroked-button [disabled]="showProgressBar">Sil</button>
+  <div *ngIf="cardData" style="flex-grow: 1; text-align: left;" class="flex-grow-1 text-start">
+    <button  (click)="deleteCard()" color="warn" mat-flat-button [disabled]="showProgressBar">Sil</button>
   </div>
 
   <div>
     <button color="warn" mat-flat-button mat-dialog-close>Kapat</button>
-    <button color="primary" (click)="cardData ? updateCard() : addCard()" mat-button  cdkFocusInitial [disabled]="cardForm.invalid || showProgressBar "  > {{cardData ? 'Guncelle' : 'Ekle'}}</button>
+    <button color="primary" mat-flat-button (click)="cardData ? updateCard() : addCard()" mat-button  cdkFocusInitial [disabled]="cardForm.invalid || showProgressBar "  > {{cardData ? 'Guncelle' : 'Ekle'}}</button>
   </div>
+
 </mat-dialog-actions>
 
 
