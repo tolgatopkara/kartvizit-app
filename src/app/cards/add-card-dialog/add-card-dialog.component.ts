@@ -11,6 +11,7 @@ import { SnackbarService } from 'src/app/services/snackbar.service';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import { ConfirmService } from 'src/app/services/confirm.service';
 
 
 @Component({
@@ -28,7 +29,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     width: 100%;
   }`
   ],
-  providers: [SnackbarService]
+  providers: [SnackbarService, ConfirmService]
 
 })
 export class AddCardDialogComponent implements OnInit {
@@ -37,14 +38,14 @@ export class AddCardDialogComponent implements OnInit {
   snackBarService = inject(SnackbarService)
   formBuilder: FormBuilder = inject(FormBuilder);
   dialogRef = inject(MatDialogRef<AddCardDialogComponent>);
-
+  confirmService = inject(ConfirmService);
   cardForm!: FormGroup
   showProgressBar = false;
 
 
 
   ngOnInit(): void {
-    this.dialogRef.disableClose = true;  // Prevent user from closing dialog by clicking on background 
+    this.dialogRef.disableClose = true;  // Prevent user from closing dialog by clicking on background
     this.cardForm = this.formBuilder.group({
       name: [this.cardData?.name || '', [Validators.maxLength(50)]],
       title: [this.cardData?.title || '', [Validators.required, Validators.maxLength(255)]],
@@ -80,16 +81,25 @@ export class AddCardDialogComponent implements OnInit {
   }
 
   deleteCard(): void {
-    this.showProgressBar = true;
-    this.cardService.deleteCard(this.cardData.id)
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      .subscribe((res: any) => {
-        this.getSucces(res || 'Kartvizit Silindi');
-        console.log(res);
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      }, (err : any) => {
-        this.getError(err.message || 'Kartvizit silinirken bir sorun olustu' );
-      })
+
+
+    this.confirmService.openConfirmDialog()
+    .afterClosed().subscribe(res => {
+      if (res) {
+        this.showProgressBar = true;
+        this.cardService.deleteCard(this.cardData.id)
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          .subscribe((res: any) => {
+            this.getSucces(res || 'Kartvizit Silindi');
+            console.log(res);
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          }, (err : any) => {
+            this.getError(err.message || 'Kartvizit silinirken bir sorun olustu' );
+          })
+      }
+    });
+
+
   }
 
 

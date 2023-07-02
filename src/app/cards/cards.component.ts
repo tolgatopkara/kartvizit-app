@@ -21,7 +21,7 @@ import { CardSearchComponent } from './card-search/card-search.component';
     </div>
     <app-card-search/>
 
-    <button  [hidden]="cardService.cards.length===0"  style="margin-left: 16px;" mat-raised-button color="primary" (click)="openDialog()">Kartvizit Ekle</button>
+    <button  [hidden]="cardService.cards?.length===0"  style="margin-left: 16px;" mat-raised-button color="primary" (click)="openDialog()">Kartvizit Ekle</button>
   </div>
 
   <div class="cards">
