@@ -14,7 +14,7 @@ import { FormsModule } from '@angular/forms';
   <header class="header">
   <mat-toolbar color="accent">
   <span>Kartvizit App</span>
-  <mat-slide-toggle (ngModelChange)="onChangeTheme()" [(ngModel)]="isDarkTheme">Slide me!</mat-slide-toggle>
+  <mat-slide-toggle (ngModelChange)="onChangeTheme()" [(ngModel)]="isDarkTheme"></mat-slide-toggle>
 
   <span class="example-spacer"></span>
 <ul class="header-menu">

@@ -17,10 +17,29 @@ import { MatIconModule } from '@angular/material/icon';
   standalone: true,
   imports: [CommonModule, MatCardModule, MatButtonModule, MatDividerModule, MatListModule,MatIconModule],
   templateUrl: './card-item.component.html',
-  styles: [` mat-card-header {
+  styles: [`
+    .card-item {
+
+      width :300px;
+      margin: 10px;
+    }
+
+    .button-container {
+      margin :0px 5px 0px 0px
+    }
+      mat-card-header {
       background-color: #3f51b5;
       color: white;
       cursor: pointer;
+      height: 30px;
+      padding: 16px 9px 0;
+      border-radius : 5px 5px 0px 0px;
+
+    }
+
+
+    mat-mdc-card-header {
+      padding: 15px 15px 15px 15px;
     }
     `  ],
   providers: [ConfirmService]

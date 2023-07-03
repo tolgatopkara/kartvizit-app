@@ -17,11 +17,13 @@ import { CardSearchComponent } from './card-search/card-search.component';
       <p class="page-description">
         Bu ekranda kartvizitlerinizi yonetebilirsiniz
       </p>
-      <hr />
-    </div>
-    <app-card-search/>
 
-    <button  [hidden]="cardService.cards?.length===0"  style="margin-left: 16px;" mat-raised-button color="primary" (click)="openDialog()">Kartvizit Ekle</button>
+      <hr />
+      <app-card-search/>
+
+<button  [hidden]="cardService.cards?.length===0"  style="margin-left: 16px;" mat-raised-button color="primary" (click)="openDialog()">Kartvizit Ekle</button>
+
+    </div>
   </div>
 
   <div class="cards">
@@ -29,23 +31,35 @@ import { CardSearchComponent } from './card-search/card-search.component';
       <div class="col-12" *ngIf="!cardService.cards">
       <span>Kartvizitler yukleniyor lutfen bekleyiniz...</span>
       </div>
-      <div class="col-12" *ngIf="cardService.cards?.length === 0" >
+      <div  *ngIf="cardService.cards?.length === 0" >
       <span>Henuz kartvizit eklemediniz <a class="text-primary" href="javascript:alert('Lutfen Bilgileri Dogru Doldurgunuzdan Emin Olun!');" (click)="openDialog()">Buraya Tiklayarak</a> lutfen kartvizit ekleyin</span>
       </div>
-      <div class="col-12 col-md-4 col-lg-3" *ngFor="let card of cardService.filteredCards">
+    <section class="card-container">
+    <div  *ngFor="let card of cardService.filteredCards">
         <app-card-item [card]="card" />
       </div>
+    </section>
     </div>
   </div>
 </main>
 `,
   imports: [CommonModule,
-            CardItemComponent,
-            MatDialogModule,
-            MatButtonModule,
-            AddCardDialogComponent,
-            CardSearchComponent,
-          ],
+    CardItemComponent,
+    MatDialogModule,
+    MatButtonModule,
+    AddCardDialogComponent,
+    CardSearchComponent,
+  ],
+
+  styles: [`
+
+    .card-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+
+    }
+    `],
 
 })
 export class CardsComponent implements OnInit {

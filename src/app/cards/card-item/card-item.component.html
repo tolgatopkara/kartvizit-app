@@ -2,6 +2,7 @@
 
   <mat-card-header class="card-header" (click)="openUpdateCardDialog(card)">
     <mat-card-title>{{ card.name || "-" }}</mat-card-title>
+
   </mat-card-header>
 
   <mat-card-content>
@@ -9,22 +10,22 @@
       <mat-list-item role="listitem">{{ card.phone }}</mat-list-item>
       <mat-list-item role="listitem">{{ card.title }} </mat-list-item>
       <mat-list-item *ngIf="card.address" role="listitem">{{ card.address }}</mat-list-item>
-      <mat-list-item *ngIf="!card.address">Adres Bulunamadi</mat-list-item>
+      <mat-list-item color="warn" *ngIf="!card.address">Adres Bulunamadi</mat-list-item>
       <mat-list-item *ngIf="card.email" role="listitem">{{card.email}}   </mat-list-item>
       <mat-list-item  *ngIf="!card.email">Email Bulunamadi</mat-list-item>
     </mat-list>
   </mat-card-content>
 
-  <mat-card-actions>
-    <button (click)="onDelete(card.id)" mat-mini-fab color="warn" aria-label="Example icon button with a plus one icon">
-      <mat-icon>delete</mat-icon>
-    </button>
-    <button  (click)="openUpdateCardDialog(card)" mat-mini-fab color="primary" aria-label="Example icon button with a plus one icon">
-      <mat-icon>menu</mat-icon>
-    </button>
 
+  <mat-card-footer>
+    <mat-card-actions >
+      <button class="button-container" (click)="onDelete(card.id)" mat-mini-fab color="warn" aria-label="Example icon button with a plus one icon">
+        <mat-icon>delete</mat-icon>
+      </button>
+      <button class="button-container" (click)="openUpdateCardDialog(card)" mat-mini-fab color="primary" aria-label="Example icon button with a plus one icon">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </mat-card-actions>
 
-  </mat-card-actions>
-
-  <mat-card-footer> </mat-card-footer>
+  </mat-card-footer>
 </mat-card>
